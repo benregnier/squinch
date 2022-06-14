@@ -217,7 +217,7 @@ function d2cv(lpos, lnum, dtype)
               crow.output[i]()
             elseif crowouts[i] == 5 then
               --crow.output[i].action = "{ to(8, 0, 'linear'), to(0," .. (loop[lnum].vel[lpos]/127 * 0.4 + 0.1) .. ", 'logarithmic') }" --variable time envelope (deprecated)
-              crow.output[i].action = "{ to(".. (loop[lnum].vel[lpos]/127 * 7) .. ", 0, 'linear'), to(0, 'logarithmic') }"  --variable release envelope, 0v to 8v
+              crow.output[i].action = "{ to(".. (loop[lnum].vel[lpos]/127 * 7) .. ", 0, 'linear'), to(0, 0.5, 'logarithmic') }"  --variable release envelope, 0v to 8v
               crow.output[i]()
             end
           end
