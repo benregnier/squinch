@@ -18,7 +18,7 @@ CV: using crow, squinch can output many different cv outputs:
   - velocity outputs velocity values (0 to 8v)
   - trigger outputs 100ms triggers with a variable voltage scaled by velocity (1v to 8v)
   - gate outputs variable 5v gates scaled by velocity (100 to 500 ms)
-  - envelope outputs an exponential envelope with a fixed vertical attack and decay scaled by velocity (100 ms to 500 ms)
+  - envelope outputs an exponential envelope with a fixed vertical attack and .5sec decay, voltage scaled by velocity (0v to 8v)
 
 MIDI: this is not yet implemented, but I plan to bring in a method similar to how MIDI is done on Awake, with note off delayed by metro.
 
