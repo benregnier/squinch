@@ -18,7 +18,7 @@ ppqn = 32
 beats = 8 -- quarter notes
 ldir = 1 -- direction
 
-loopmax = beats*ppqn --  /12 for 32nd notes, /24 for 16th, so on
+loopmax = beats*ppqn 
 loopq = 1 ---quantization
 active = 1
 loop = {}
