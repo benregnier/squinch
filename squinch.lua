@@ -208,13 +208,17 @@ function d2cv(lpos, lnum, dtype)
             if crowouts[i] == 1 then --v/oct
               crow.output[i].volts = midi_to_voct(loop[lnum].note[lpos])
             elseif crowouts[i] == 2 then
-              crow.output[i] = midi_to_cv(loop[lnum].vel[lpos])
+              crow.output[i].volts = midi_to_cv(loop[lnum].vel[lpos])
             elseif crowouts[i] == 3 then
               crow.output[i].action = "pulse(0.1,".. (loop[lnum].vel[lpos]/127 * 7 + 1) .. ",1)"  --variable strength pulse, 1v to 8v
+              crow.output[i]()
             elseif crowouts[i] == 4 then
-              crow.output[i].action = "pulse(" .. (loop[lnum].vel[lpos]/127 * 0.4 + 0.1) .. ",1)"  --variable length pulse, .1 to .5 sec
+              crow.output[i].action = "pulse(" .. (loop[lnum].vel[lpos]/127 * 0.4 + 0.1) .. ",5,1)"  --variable length 5v pulse, .1 to .5 sec
+              crow.output[i]()
             elseif crowouts[i] == 5 then
-              crow.output[i].action = "ar('exponential', 0," .. (loop[lnum].vel[lpos]/127 * 0.4 + 0.1) .. ")"  -- plucky expo AR envelope (variation TBD)
+              --crow.output[i].action = "{ to(8, 0, 'linear'), to(0," .. (loop[lnum].vel[lpos]/127 * 0.4 + 0.1) .. ", 'logarithmic') }" --variable time envelope (deprecated)
+              crow.output[i].action = "{ to(".. (loop[lnum].vel[lpos]/127 * 7) .. ", 0, 'linear'), to(0, 'logarithmic') }"  --variable release envelope, 0v to 8v
+              crow.output[i]()
             end
           end
         end
